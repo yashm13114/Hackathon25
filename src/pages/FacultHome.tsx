@@ -1,9 +1,8 @@
 import Navbar2 from '@/components/Navbar2';
 import React, { useState } from 'react';
-import ChatRoom from './ChatRoom'; // Import the ChatBox component
-import VoiceChat from './VoiceChat';
-import FeedbackForm from './FeedBackForm';
+import ChatRoom from './ChatRoom'; 
 import ResumeUpload from './ResumeUpload';
+import LivRoom from './LivRoom';
 // import ChatRoom from './ChatRoom';
 
 export const FacultHome = () => {
@@ -43,6 +42,7 @@ export const FacultHome = () => {
       </div>
       {/* <FeedbackForm /> */}
       <ResumeUpload />
+      <LivRoom />
 
       {/* GD Section */}
       {selectedSection === 'gd' && (
