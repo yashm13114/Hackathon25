@@ -15,8 +15,8 @@ const StdLogin = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
 const navigate = useNavigate(); 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault(); // ✅ stops native form submission
   
     try {
       const response = await fetch("http://10.200.17.94:3000/user/login", {
@@ -31,13 +31,11 @@ const navigate = useNavigate();
   
       if (response.ok) {
         console.log("Login successful:", data);
-        // Example: store token & redirect
         localStorage.setItem("token", data.token);
         alert("Login successful!");
-        navigate("/FacultyHome"); // Redirect to dashboard or home page
-        // Navigate to dashboard or home
-        // window.location.href = "/dashboard"; // or use navigate()
+        navigate("/FacultyHome");
       } else {
+        console.warn("Login failed:", data);
         alert(data.message || "Login failed. Please check your credentials.");
       }
     } catch (error) {
@@ -45,6 +43,7 @@ const navigate = useNavigate();
       alert("Something went wrong. Please try again later.");
     }
   };
+  
   
 
   return (
@@ -62,7 +61,7 @@ const navigate = useNavigate();
             </p>
           </div>
           
-          <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
+          <form className="mt-8 space-y-6" onSubmit={handleSubmit} noValidate>
             <div className="space-y-4">
               <div>
                 <Label htmlFor="email" className="block text-sm font-medium text-gray-700">
