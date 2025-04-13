@@ -33,7 +33,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         console.log("Login successful:", data);
         localStorage.setItem("token", data.token);
         alert("Login successful!");
-        navigate("/FacultyHome");
+        navigate("/StdHome"); // Redirect to StdHome after successful login
       } else {
         console.warn("Login failed:", data);
         alert(data.message || "Login failed. Please check your credentials.");
